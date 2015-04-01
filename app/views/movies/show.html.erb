@@ -5,6 +5,7 @@
     <h3><%= @movie.release_date %></h3>
     <h4>Dir. <%= @movie.director %> | <%= @movie.runtime_in_minutes %> minutes</h4>
     <p><%= @movie.description %></p>
+    <h2><%= @movie.review_average %>/10</h2>
 
     <hr>
 
@@ -13,7 +14,7 @@
       <% @movie.reviews.each do |review| %>
         <p><%= review.text %></p>
         <p><%= review.rating_out_of_ten %>/10</p>
-        <small>- <%= review.user.email %></small><br/>
+        <small>- <%= review.user.full_name %></small><br/>
       <% end %>
       <p><%= link_to "Write a review!", new_movie_review_path(@movie) %></p>
     <% else %>
