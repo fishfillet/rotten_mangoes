@@ -1,5 +1,6 @@
 class Movie < ActiveRecord::Base
   has_many :reviews
+  mount_uploader :image, ImageUploader
 
   validates :title,
     presence: true
@@ -22,7 +23,9 @@ class Movie < ActiveRecord::Base
   validate :release_date_is_in_the_future
 
  def review_average
-    reviews.sum(:rating_out_of_ten)/reviews.size
+    if reviews.length > 0
+     reviews.sum(:rating_out_of_ten)/reviews.size
+    end
   end
 
 
@@ -33,4 +36,6 @@ class Movie < ActiveRecord::Base
       errors.add(:release_date, "should probably be in the future") if release_date < Date.today
     end
   end
+
+
 end
