@@ -1,1 +1,10 @@
-<h1>Rotten Mangoes</h1>
+<h1>List of Users</h1>
+
+
+<%= paginate @users %>
+<% @users.each do |user| %>
+<p><%= user.full_name %></p>
+<%= link_to 'delete', admin_user_path(user), method: :delete, confirm: "WHAT WHY?" %>
+<% end %>
+
+
